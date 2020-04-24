@@ -1,0 +1,26 @@
+{
+    "titleconfig": 
+    {
+        "fontsize": "26px",
+        "xpos": 586,
+        "ypos": 71
+    },
+    "nameconfig": 
+    {
+        "fontsize": "32px",
+        "xpos": 586,
+        "ypos": 116
+    },
+    "islandconfig": 
+    {
+        "fontsize": "px32",
+        "xpos": 1035,
+        "ypos": 96
+    },
+    "dodocodeconfig": 
+    {
+        "fontsize": "50px",
+        "xpos": 1475,
+        "ypos": 100
+    }
+}
