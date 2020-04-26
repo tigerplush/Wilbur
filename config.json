@@ -1,29 +1,38 @@
 {
     "pathToFile": "images",
-    "width": 1692,
-    "height": 131,
+    "width": 1500,
+    "height": 139,
     "titleconfig": 
     {
         "fontsize": "26px",
-        "xpos": 586,
-        "ypos": 71
+        "xpos": 324,
+        "ypos": 40,
+        "width": 407,
+        "height": 45
     },
     "nameconfig": 
     {
         "fontsize": "32px",
-        "xpos": 586,
-        "ypos": 116
+        "alternativeFontsize": "48px",
+        "xpos": 324,
+        "ypos": 87,
+        "width": 407,
+        "height": 45
     },
     "islandconfig": 
     {
-        "fontsize": "px32",
-        "xpos": 1035,
-        "ypos": 96
+        "fontsize": "48px",
+        "xpos": 750,
+        "ypos": 40,
+        "width": 394,
+        "height": 90
     },
     "dodocodeconfig": 
     {
         "fontsize": "50px",
-        "xpos": 1475,
-        "ypos": 100
+        "xpos": 1163,
+        "ypos": 40,
+        "width": 332,
+        "height": 90
     }
 }
