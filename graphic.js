@@ -91,6 +91,24 @@ module.exports =
             }
         }
         return;
+    },
+
+    remove(island)
+    {
+        if(cacheMap.has(island.serverid))
+        {
+            let serverMap = cacheMap.get(island.serverid);
+            if(serverMap.has(island.userid))
+            {
+                serverMap.delete(island.userid);
+                
+            }
+        }
+        const filename = pathToFile + '/' + island.serverid + '-' + island.userid + '.png';
+        if(fs.existsSync(filename))
+        {
+            fs.unlinkSync(filename);
+        }
     }
 }
 

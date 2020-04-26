@@ -36,11 +36,7 @@ app.post('/fetch', (req, res) =>
 app.post('/remove', (req, res) =>
 {
     island = req.body;
-    const filename = pathToFile + '/' + island.serverid + '-' + island.userid + '.png';
-    if(fs.existsSync(filename))
-    {
-        fs.unlinkSync(filename);
-    }
+    graphic.remove(island);
     res.json({
         status: "success"
     })
