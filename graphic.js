@@ -70,8 +70,8 @@ module.exports =
                 const buffer = canvas.toBuffer('image/png');
                 const filename = pathToFile + '/' + island.serverid + '-' + island.userid + '.png';
                 fs.writeFileSync(filename, buffer);
-                dataURL = canvas.toDataURL();
-                island.dataURL = dataURL;
+                //dataURL = canvas.toDataURL();
+                island.dataURL = buffer;
             });
         });        
     },
