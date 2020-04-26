@@ -1,6 +1,6 @@
 {
   "name": "wilbur",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This is the provider for flight schedule graphics for the Orville Bot",
   "main": "wilbur.js",
   "scripts": {
