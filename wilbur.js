@@ -18,6 +18,8 @@ app.use(express.json());
 app.post('/create', (req, res) => 
 {
     island = req.body;
+    console.log("Image requested for");
+    console.log(island);
     graphic.create(island);
     res.json({
         status: "success"
@@ -36,6 +38,8 @@ app.post('/fetch', (req, res) =>
 app.post('/remove', (req, res) =>
 {
     island = req.body;
+    console.log("Image removal requested for");
+    console.log(island);
     graphic.remove(island);
     res.json({
         status: "success"
