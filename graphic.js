@@ -54,7 +54,7 @@ module.exports =
                 context.fillText(island.island, xpos, ypos, islandconfig.width);
             }
 
-            if(island.dodocode)
+            if(island.dodoCode)
             {
                 const xpos = dodocodeconfig.xpos + dodocodeconfig.width / 2;
                 const ypos = dodocodeconfig.ypos + dodocodeconfig.height / 2;
@@ -62,7 +62,7 @@ module.exports =
                 context.fillStyle = "white";
                 context.textAlign = "center";
                 context.textBaseline = "middle";
-                context.fillText(island.dodocode, xpos, ypos, dodocodeconfig.width);
+                context.fillText(island.dodoCode, xpos, ypos, dodocodeconfig.width);
             }
 
             loadImage('./dodo_code_lines.png').then(image => {
@@ -73,7 +73,7 @@ module.exports =
                 //dataURL = canvas.toDataURL();
                 island.dataURL = buffer;
             });
-        });        
+        });
     },
 
     retrieveUrl(user)
