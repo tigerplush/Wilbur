@@ -68,9 +68,8 @@ module.exports =
             loadImage('./dodo_code_lines.png').then(image => {
                 context.drawImage(image, 0, 0, width, height);
                 const buffer = canvas.toBuffer('image/png');
-                const filename = pathToFile + '/' + island.serverid + '-' + island.userid + '.png';
+                const filename = pathToFile + '/' + island._id + '.png';
                 fs.writeFileSync(filename, buffer);
-                //dataURL = canvas.toDataURL();
                 island.dataURL = buffer;
             });
         });
@@ -78,16 +77,12 @@ module.exports =
 
     retrieveUrl(user)
     {
-        if(cacheMap.has(user.serverid))
+        if(cacheMap.has(user._id))
         {
-            let serverMap = cacheMap.get(user.serverid);
-            if(serverMap.has(user.userid))
+            island = cacheMap.get(user._id);
+            if(island.dataURL)
             {
-                island = serverMap.get(user.userid);
-                if(island.dataURL)
-                {
-                    return island.dataURL;
-                }
+                return island.dataURL;
             }
         }
         return;
@@ -95,44 +90,25 @@ module.exports =
 
     remove(island)
     {
-        if(cacheMap.has(island.serverid))
+        //to do use maps how they're intended. means that orville has to send the id for the userInfo
+        cacheMap.forEach((user) => 
         {
-            let serverMap = cacheMap.get(island.serverid);
-            if(serverMap.has(island.userid))
+            if(user.serverid === island.serverid && user.userid === island.userid)
             {
-                serverMap.delete(island.userid);
-                
+                const filename = pathToFile + '/' + user._id + '.png';
+                if(fs.existsSync(filename))
+                {
+                    fs.unlinkSync(filename);
+                }
             }
-        }
-        const filename = pathToFile + '/' + island.serverid + '-' + island.userid + '.png';
-        if(fs.existsSync(filename))
-        {
-            fs.unlinkSync(filename);
-        }
+        });
     }
 }
 
 function cache(island)
 {
-    let userMap;
-    if(cacheMap.has(island.serverid))
+    if(!cacheMap.has(island._id))
     {
-        userMap = cacheMap.get(island.serverid);
-    }
-    else
-    {
-        userMap = new Map();
-        cacheMap.set(island.serverid, userMap);
-    }
-
-    let user;
-    if(userMap.has(island.userid))
-    {
-        user = userMap.get(island.userid);
-    }
-    else
-    {
-        user = island;
-        userMap.set(island.userid, user);
+        cacheMap.set(island._id, island);
     }
 }
