@@ -68,7 +68,7 @@ module.exports =
             loadImage('./dodo_code_lines.png').then(image => {
                 context.drawImage(image, 0, 0, width, height);
                 const buffer = canvas.toBuffer('image/png');
-                const filename = pathToFile + '/' + island._id + '.png';
+                const filename = pathToFile + '/' + getId(island) + '.png';
                 fs.writeFileSync(filename, buffer);
                 island.dataURL = buffer;
             });
@@ -77,9 +77,9 @@ module.exports =
 
     retrieveUrl(user)
     {
-        if(cacheMap.has(user._id))
+        if(cacheMap.has(getId(user)))
         {
-            island = cacheMap.get(user._id);
+            island = cacheMap.get(getId(user));
             if(island.dataURL)
             {
                 return island.dataURL;
@@ -90,25 +90,27 @@ module.exports =
 
     remove(island)
     {
-        //to do use maps how they're intended. means that orville has to send the id for the userInfo
-        cacheMap.forEach((user) => 
+        if(cacheMap.has(getId(island)))
         {
-            if(user.serverid === island.serverid && user.userid === island.userid)
+            const filename = pathToFile + '/' + getId(island) + '.png';
+            if(fs.existsSync(filename))
             {
-                const filename = pathToFile + '/' + user._id + '.png';
-                if(fs.existsSync(filename))
-                {
-                    fs.unlinkSync(filename);
-                }
+                fs.unlinkSync(filename);
             }
-        });
+            cacheMap.delete(getId(island))
+        }
     }
 }
 
 function cache(island)
 {
-    if(!cacheMap.has(island._id))
+    if(!cacheMap.has(getId(island)))
     {
-        cacheMap.set(island._id, island);
+        cacheMap.set(getId(island), island);
     }
+}
+
+function getId(island)
+{
+    return id = island.serverid + "-" + island.userid;
 }
