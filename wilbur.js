@@ -1,14 +1,6 @@
 const graphic = require('./graphic.js');
 const express = require('express');
 const app = express();
-const fs = require('fs');
-
-const {pathToFile} = require('./config.json');
-
-if (!fs.existsSync(pathToFile))
-{
-    fs.mkdirSync(pathToFile);
-}
 
 app.listen(3000, console.log('listening on 3000'));
 

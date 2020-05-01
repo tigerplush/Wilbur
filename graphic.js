@@ -1,5 +1,4 @@
-const {pathToFile, width, height, titleconfig, nameconfig, islandconfig, dodocodeconfig} = require('./config.json');
-const fs = require('fs');
+const {width, height, titleconfig, nameconfig, islandconfig, dodocodeconfig} = require('./config.json');
 const {createCanvas, loadImage} = require('canvas');
 
 const canvas = createCanvas(width, height);
@@ -68,8 +67,6 @@ module.exports =
             loadImage('./dodo_code_lines.png').then(image => {
                 context.drawImage(image, 0, 0, width, height);
                 const buffer = canvas.toBuffer('image/png');
-                const filename = pathToFile + '/' + getId(island) + '.png';
-                fs.writeFileSync(filename, buffer);
                 island.dataURL = buffer;
             });
         });
@@ -92,11 +89,6 @@ module.exports =
     {
         if(cacheMap.has(getId(island)))
         {
-            const filename = pathToFile + '/' + getId(island) + '.png';
-            if(fs.existsSync(filename))
-            {
-                fs.unlinkSync(filename);
-            }
             cacheMap.delete(getId(island))
             return "success";
         }
