@@ -40,8 +40,8 @@ app.post('/remove', (req, res) =>
     island = req.body;
     console.log("Image removal requested for");
     console.log(island);
-    graphic.remove(island);
+    const stat = graphic.remove(island);
     res.json({
-        status: "success"
+        status: stat
     })
 });

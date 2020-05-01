@@ -98,7 +98,9 @@ module.exports =
                 fs.unlinkSync(filename);
             }
             cacheMap.delete(getId(island))
+            return "success";
         }
+        return "404";
     }
 }
 
